@@ -7,58 +7,56 @@
 %% Anexo B - Caso de Uso 01
 %% Aqui são usado os asteriscos para retirar essas seções/subseções do Sumário
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Especificação do Caso de Uso 01 --- Doação}
+\section*{Especificação do Caso de Uso 01 --- Autenticar}
 \subsection*{Objetivo}
-Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 01 - Doação. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
+Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 01 - Autenticar. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
 
 \subsection*{Identificação dos Atores}
-Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 01 - Doação.
+Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 01 - Autenticar.
 \begin{lista}
-  \item \textbf{Usuário}: Qualquer pessoa que utiliza o Ajuda.Ai;
-  \item \textbf{Cliente}: Interface através da qual o Usuário utiliza o Ajuda.Ai.
+  \item \textbf{Usuário}: Qualquer pessoa que utiliza o aplicativo;
 \end{lista}
 
 \subsection*{Identificação dos Fluxos}
 Esta seção lista e descreve todos os fluxos que compõem o caso de uso.
 \begin{lista}
-  \item \textbf{Efetuar Doação}: Este fluxo descreve como se dá a efetuação de uma doação a uma Instituição.
+  \item \textbf{Autenticar com Google}: Este fluxo descreve como se dá a autenticação do usuário usando sua conta Google.
+  \item \textbf{Acessar como anônimo}: Este fluxo descreve como se dá a autenticação do usuário que deseja acessar sem identificação.
 \end{lista}
 
 \subsection*{Detalhamento dos Fluxos}
 \begin{lista}
-  \item \textbf{Efetuar Doação}: Este fluxo especifica a ação de efetuar uma doação a uma Instituição. O usuário fornece dados ao cliente o qual, junto ao sistema, faz uma ordem de pagamento junto ao \emph{Gateway} configurado para a Instituição.
+  \item \textbf{Autenticar com Google}: Este fluxo especifica a ação de iniciar uma sessão no aplicativo. O usuário fornece suas credenciais de sua conta Google para ter um acesso identificado no aplicativo.
     \begin{itemize}
-    \item \textbf{Atores}: Usuário, Cliente;
+    \item \textbf{Atores}: Usuário;
     \item \textbf{Pré-Condições}: Nenhuma;
     \item \textbf{Pós-Condições}: Nenhuma;
-    \item \textbf{Requisitos Funcionais}: O sistema deve prover uma interface para execução da doação.
+    \item \textbf{Requisitos Funcionais}: O sistema deve prover uma interface que faz chamada ao serviço da Google responsável por autenticação.
     \end{itemize}
 	
     \textbf{Fluxo Básico}
     \begin{enumerate}
-    \item O ator Cliente mostra ao ator Usuário informações sobre uma Instituição;
-    \item O Usuário decide efetuar uma doação a Instituição;
-    \item O Cliente solicita os dados para doação: Valor, Se o nome de quem está doando pode ou não ser publicado, Se os custos operacionais do \emph{Gateway} devem ser embutidos no valor da doação, E-mail e Nome;
-    \item O Usuário informa os dados solicitados;
-    \item O Cliente envia os dados ao Sistema;
-    \item O Sistema valida os dados;
-    \item O Sistema registra a ordem de pagamento no SGBD;
-    \item O Sistema retorna ao Cliente os dados do pagamento a ser efetuado pelo Usuário;
-    \item O Cliente direciona o Usuário ao \emph{Gateway} para continuar o processo de pagamento;
+    \item O aplicativo exibe uma tela com a opção de autenticação utilizando suas credenciais Google ou modo anônimo;
+    \item O Usuário decide acessar o sistema utilizando sua conta Google;
+    \item O aplicativo executa e exibe em primeiro plano o serviço de autenticação da Google, que por sua vez possui seu próprio fluxo de autenticação;
+    \item O serviço de autenticação da Google retorna o status da solicitação juntamente com alguns dados básicos do usuário;
+    \item O aplicativo valida os dados;
+    \item O aplicativo registra todas as informações no Banco de Dados;
+    \item O Usuário é direcionado a tela principal do aplicativo;
     \item O caso de uso se encerra.
     \end{enumerate}
     
     \textbf{Fluxo Alternativo A} \\
-    No Passo 5, caso exista algum erro de comunicação entre Cliente e Sistema:
+    No Passo 5, caso exista algum erro de comunicação entre o aplicativo e o serviço de autenticação da Google:
     \begin{enumerate}
-    \item Uma mensagem de erro é exibida ao Usuário informando da falha;
+    \item Uma mensagem de erro é exibida ao Usuário informando a falha;
     \item O fluxo retorna ao passo 1.
     \end{enumerate}
     
     \textbf{Fluxo Alternativo B} \\
-    No Passo 6, caso exista algum erro de validação das entradas:
+    No Passo 5, caso exista algum erro de autenticação:
     \begin{enumerate}
-    \item Todos os erros de validação encontrados são retornados ao Cliente;
+    \item Uma mensagem de erro é exibida ao Usuário informando da falha;
     \item O fluxo retorna ao passo 1.
     \end{enumerate}
 \end{lista}
@@ -67,96 +65,48 @@ Esta seção lista e descreve todos os fluxos que compõem o caso de uso.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Anexo B - Caso de Uso 02
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Especificação do Caso de Uso 02 --- Comunicação com o Doador}
+\section*{Especificação do Caso de Uso 02 --- Participar de torneios}
 \subsection*{Objetivo}
-Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 02 - Comunicação com o Doador. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
+Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 02 - Participar de torneios. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
 
 \subsection*{Identificação dos Atores}
-Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 02 - Comunicação com o Doador.
+Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 02 - Participar de torneios.
 \begin{lista}
-  \item \textbf{Usuário}: Qualquer pessoa que utiliza o Ajuda.Ai;
-  \item \textbf{Instituição}: Usuário representativo de uma Instituição cadastrada no Ajuda.Ai;
-  \item \textbf{Cliente}: Interface através da qual o Usuário utiliza o Ajuda.Ai.
+  \item \textbf{Usuário}: Qualquer pessoa autenticada que utiliza o aplicativo;
 \end{lista}
 
 \subsection*{Identificação dos Fluxos}
 Esta seção lista e descreve todos os fluxos que compõem o caso de uso.
 \begin{lista}
-  \item \textbf{Criar \emph{Post}}: Este fluxo descreve como se dá a criação de um \emph{Post} pela Instituição;
-  \item \textbf{Editar \emph{Post}}: Este fluxo descreve como se dá a alteração de um \emph{Post} pela Instituição.
+  \item \textbf{Participar de Torneios}: Este fluxo descreve como se dá a participação de um usuário em um Torneio.
 \end{lista}
 
 \subsection*{Detalhamento dos Fluxos}
 \begin{lista}
-  \item \textbf{Criar \emph{Post}}: Este fluxo especifica a ação de criar um \emph{post} vinculado a uma Instituição. A Instituição fornece dados ao cliente o qual, junto ao sistema, cria um \emph{post} vinculado a Instituição que está usando o Sistema no momento.
+  \item \textbf{Participar de Torneios}: .
     \begin{itemize}
-    \item \textbf{Atores}: Instituição, Cliente;
-    \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema;
-    \item \textbf{Pós-Condições}: \emph{Post} cadastrado;
-    \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para criação de \emph{posts}.
+    \item \textbf{Atores}: Usuário;
+    \item \textbf{Pré-Condições}: O usuário estar autenticado junto ao aplicativo;
+    \item \textbf{Pós-Condições}: Usuário inscrito num torneio;
+    \item \textbf{Requisitos Funcionais}: O aplicativo deve prover uma interface inscrição em torneios.
     \end{itemize}
 	
     \textbf{Fluxo Básico}
     \begin{enumerate}
-    \item A Instituição decide criar um novo \emph{post};
-    \item A Instituição navega à página de criação de Novo \emph{Post};
-    \item O Cliente solicita os dados do Post: Texto da URL, Título, Subtítulo, Conteúdo (formato \emph{Markdown}), imagem do cabeçalho e se o \emph{post} será ou não publicado;
-    \item A Instituição informa os dados solicitados;
-    \item O Cliente envia os dados ao Sistema;
-    \item O Sistema valida os dados;
-    \item O Sistema registra o \emph{post} no SGBD;
-    \item O Sistema retorna ao Cliente os dados do \emph{post} criado;
+    \item O usuário decide participar de um dos torneios disponíveis na página principal;
+    \item O usuário acessa o detalhe do torneio;
+    \item O usuário clica em participar;
+    \item O aplicativo envia os dados ao Sistema;
+    \item O Sistema registra a inscrição no SGBD;
+    \item O Sistema retorna ao Aplicativo o status da solicitação;
+    \item Uma mensagem é exibida ao Usuário informando o resultado da inscrição;
     \item O caso de uso se encerra.
     \end{enumerate}
     
     \textbf{Fluxo Alternativo A} \\
-    Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
+    Em qualquer passo, caso exista algum erro de comunicação entre o aplicativo e servidor:
     \begin{enumerate}
     \item Uma mensagem de erro é exibida ao Usuário informando da falha.
-    \end{enumerate}
-    
-    \textbf{Fluxo Alternativo B} \\
-    No Passo 6, caso exista algum erro de validação das entradas:
-    \begin{enumerate}
-    \item Todos os erros de validação encontrados são retornados ao Cliente;
-    \item O fluxo retorna ao passo 2.
-    \end{enumerate}
-  
-  
-  
-  \item \textbf{Editar \emph{Post}}: Este fluxo especifica a ação de editar um \emph{post} vinculado a uma Instituição que já existe. Após escolher qual \emph{post} será alterado, a Instituição fornece dados ao cliente o qual, junto ao sistema, altera o \emph{post} vinculado a Instituição com as novas informações.
-    \begin{itemize}
-    \item \textbf{Atores}: Instituição, Cliente;
-    \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema, \emph{Post} da Instituição cadastrado no Sistema;
-    \item \textbf{Pós-Condições}: \emph{Post} modificado;
-    \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para alteração de \emph{posts}.
-    \end{itemize}
-	
-    \textbf{Fluxo Básico}
-    \begin{enumerate}
-    \item A Instituição decide alterar um \emph{post};
-    \item A Instituição navega a uma página com uma lista de todos os seus \emph{posts};
-    \item A Instituição seleciona qual de seus \emph{posts} será alterado;
-    \item O Cliente solicita os dados do Post: Texto da URL, Título, Subtítulo, Conteúdo (formato \emph{Markdown}), imagem do cabeçalho e se o \emph{post} será ou não publicado;
-    \item A Instituição informa os dados solicitados;
-    \item O Cliente envia os dados ao Sistema;
-    \item O Sistema valida os dados;
-    \item O Sistema altera o \emph{post} no SGBD;
-    \item O Sistema retorna ao Cliente os dados do \emph{post} alterado;
-    \item O caso de uso se encerra.
-    \end{enumerate}
-    
-    \textbf{Fluxo Alternativo A} \\
-    Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
-    \begin{enumerate}
-    \item Uma mensagem de erro é exibida ao Usuário informando da falha.
-    \end{enumerate}
-    
-    \textbf{Fluxo Alternativo B} \\
-    No Passo 7, caso exista algum erro de validação das entradas:
-    \begin{enumerate}
-    \item Todos os erros de validação encontrados são retornados ao Cliente;
-    \item O fluxo retorna ao passo 3.
     \end{enumerate}
 \end{lista}
 \pagebreak
@@ -164,93 +114,483 @@ Esta seção lista e descreve todos os fluxos que compõem o caso de uso.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Anexo B - Caso de Uso 03
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Especificação do Caso de Uso 03 --- Acompanhamento das Doações}
+\section*{Especificação do Caso de Uso 03 --- Visualizar notificações}
+
 \subsection*{Objetivo}
-Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 03 - Acompanhamento das Doações. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
+Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 03 - Visualizar notificações. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
 
 \subsection*{Identificação dos Atores}
-Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 03 - Acompanhamento das Doações.
+Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 03 - Visualizar notificações.
 \begin{lista}
-  \item \textbf{Instituição}: Usuário cadastrado no sistema e que possua pelo menos 01 (uma) Instituição vinculada a ele;
-  \item \textbf{Gateway}: \emph{Gateway} de Pagamento selecionado pela Instituição;
-  \item \textbf{Cliente}: Interface através da qual o Usuário utiliza o Ajuda.Ai.
+  \item \textbf{Usuário}: Qualquer pessoa autenticada que utiliza o sistema.
 \end{lista}
 
 \subsection*{Identificação dos Fluxos}
 Esta seção lista e descreve todos os fluxos que compõem o caso de uso.
 \begin{lista}
-  \item \textbf{Listagem Mensal de Doações}: Este fluxo descreve como se dá a criação de uma listagem mensal de Doações recebidas pela Instituição;
-  \item \textbf{Dados de uma Doação}: Este fluxo descreve como se dá a exibição de dados sobre uma Doação em Particular.
+  \item \textbf{Listagem de Notificações}: Este fluxo descreve como se dá o acesso a listagem de notificações recebidas pelo Aplicativo;
 \end{lista}
 
 \subsection*{Detalhamento dos Fluxos}
 \begin{lista}
-  \item \textbf{Listagem Mensal de Doações}: Este fluxo especifica a ação de listar as doações recebidas por uma Instituição em um determinado mês de um determinado ano. A Instituição fornece dados ao cliente o qual, junto ao sistema, cria uma lista, geralmente tabular, das doações recebidas.
+  \item \textbf{Listagem de Notificações}: Este fluxo especifica a ação de listar as notificações recebidas pelo aplicativo.
     \begin{itemize}
-    \item \textbf{Atores}: Instituição, Cliente;
-    \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema;
+    \item \textbf{Atores}: Usuário;
+    \item \textbf{Pré-Condições}: O usuário estar autenticada junto ao Aplicativo;
     \item \textbf{Pós-Condições}: Nenhuma;
-    \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para listagem das Doações feitas a uma Instituição.
+    \item \textbf{Requisitos Funcionais}: O Aplicativo deve prover uma interface para listagem das Notificações e Alertas feitas ao usuário autenticado.
     \end{itemize}
 	
     \textbf{Fluxo Básico}
     \begin{enumerate}
-    \item A Instituição necessita de uma listagem das doações de um mês;
-    \item A Instituição navega a uma página para listagem de doações;
-    \item O Cliente solicita os seguintes dados: De qual Instituição deve ser a lista, Mês e Ano da listagem e um dos itens de uma lista de Estados das Doações: Todos, Pago, Pronto para Receber e Cancelado;
-    \item A Instituição informa os dados solicitados;
-    \item O Cliente envia os dados ao Sistema;
-    \item O Sistema valida os dados;
-    \item O Sistema retorna ao Cliente os dados da listagem requisitada;
+    \item O usuário clica no ícone de notificações na tela principal;
+    \item O Aplicativo exibe todas as notificações disponíveis ao usuário;
+    \item O usuário clica em uma das notificações;
+    \item É exibida os detalhes da notificação ao usuário;
     \item O caso de uso se encerra.
-    \end{enumerate}
-    
-    \textbf{Fluxo Alternativo A} \\
-    Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
-    \begin{enumerate}
-    \item Uma mensagem de erro é exibida ao Usuário informando da falha.
-    \end{enumerate}
-    
-    \textbf{Fluxo Alternativo B} \\
-    No Passo 6, caso exista algum erro de validação das entradas:
-    \begin{enumerate}
-    \item Todos os erros de validação encontrados são retornados ao Cliente;
-    \item O fluxo retorna ao passo 2.
-    \end{enumerate}
-  
-  
-  
-  \item \textbf{Dados de uma Doação}: Este fluxo especifica a ação de ver dados de uma única doação específica. Após escolher qual doação será exibida, a Instituição fornece os dados necessários ao cliente o qual, junto ao sistema, pega e exibe as informações requeridas.
-    \begin{itemize}
-    \item \textbf{Atores}: Instituição, Cliente;
-    \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema, Haverem Doações feitas a Instituição;
-    \item \textbf{Pós-Condições}: Nenhuma;
-    \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para expor dados de um pagamento.
-    \end{itemize}
-	
-    \textbf{Fluxo Básico}
-    \begin{enumerate}
-    \item A Instituição decide ver dados de uma doação;
-    \item A Instituição seleciona qual doação será exibida;
-    \item A Instituição navega a uma página para exibição das informações da doação;
-    \item O Cliente requisita ao Sistema os dados da doação;
-    \item O Sistema busca os dados da doação especificada;
-    \item O Sistema retorna ao Cliente os dados da doação;
-    \item O caso de uso se encerra.
-    \end{enumerate}
-    
-    \textbf{Fluxo Alternativo A} \\
-    Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
-    \begin{enumerate}
-    \item Uma mensagem de erro é exibida ao Usuário informando da falha.
-    \end{enumerate}
-    
-    \textbf{Fluxo Alternativo B} \\
-    No Passo 5, caso a doação esteja marcada como Anônima (\codigo{anonymous = true}):
-    \begin{enumerate}
-    \item Todas as informações de identificação do doador são retiradas do objeto (\codigo{payeeName} e \codigo{payeeEmail});
-    \item O fluxo continua ao passo 6.
     \end{enumerate}
 \end{lista}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Anexo B - Caso de Uso 04
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Especificação do Caso de Uso 04 --- Comprar e vender ativos}
+\subsection*{Objetivo}
+Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 04 - Comprar e vender ativos. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
+
+\subsection*{Identificação dos Atores}
+Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 03 - Comprar e vender ativos.
+\begin{lista}
+  \item \textbf{Usuário}: Qualquer usuário autenticado que utilize o aplicativo;
+\end{lista}
+
+\subsection*{Identificação dos Fluxos}
+Esta seção lista e descreve todos os fluxos que compõem o caso de uso.
+\begin{lista}
+  \item \textbf{Comprar ativos financeiros}: Este fluxo descreve como se dá a compra de ativos financeiros pelo usuário;
+  \item \textbf{Vender ativos financeiros}: Este fluxo descreve como se dá a venda de ativos financeiros pelo usuário.
+\end{lista}
+
+\subsection*{Detalhamento dos Fluxos}
+\begin{lista}
+  \item \textbf{Comprar ativos financeiros}: Este fluxo especifica a ação de listar os ativos financeiros e efetuar uma ordem de compra de um determinado item informando a quantidade e o valor do mesmo;
+    \begin{itemize}
+    \item \textbf{Atores}: Usuário;
+    \item \textbf{Pré-Condições}: O usuário estar autenticado; O usuário possuir saldo;
+    \item \textbf{Pós-Condições}: Nenhuma;
+    \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para listagem de ativos financeiros e a opção de compra do mesmo.
+    \end{itemize}
+	
+    \textbf{Fluxo Básico}
+    \begin{enumerate}
+    \item O usuário acessa a tela referente as negociações de ativos financeiros;
+    \item O usuário seleciona um ativo financeiro;
+    \item O usuário clica na opção de compra;
+    \item O usuário informa os dados solicitados: quantidade e valor;
+    \item O Aplicativo envia os dados ao Sistema;
+    \item O Sistema valida os dados;
+    \item O Sistema retorna ao Aplicativo com um status da ação requisitada;
+    \item O Aplicativo exibe uma mensagem de sucesso ao usuário;
+    \item O caso de uso se encerra.
+    \end{enumerate}
+    
+    \textbf{Fluxo Alternativo A} \\
+    Em qualquer passo, caso exista algum erro de comunicação entre Aplicativo e Sistema:
+    \begin{enumerate}
+    \item Uma mensagem de erro é exibida ao Usuário informando da falha.
+    \end{enumerate}
+    
+    \textbf{Fluxo Alternativo B} \\
+    No Passo 6, caso exista algum erro de validação das entradas ou falta de saldo disponível:
+    \begin{enumerate}
+    \item Todos os erros de validação encontrados são retornados ao Cliente;
+    \item O fluxo retorna ao passo 4.
+    \end{enumerate}
+  
+  
+\end{lista}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% Anexo B - Caso de Uso 05
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section*{Especificação do Caso de Uso 05 --- Visualizar histórico} [PENDENTE]
+% --- O usuário pode visualizar o histórico de suas negociações e evolução de seu saldo;
+% \subsection*{Objetivo}
+% Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 03 - Visualizar histórico. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
+
+% \subsection*{Identificação dos Atores}
+% Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 03 - Visualizar histórico.
+% \begin{lista}
+%   \item \textbf{Instituição}: Usuário cadastrado no sistema e que possua pelo menos 01 (uma) Instituição vinculada a ele;
+%   \item \textbf{Gateway}: \emph{Gateway} de Pagamento selecionado pela Instituição;
+%   \item \textbf{Cliente}: Interface através da qual o Usuário utiliza o Ajuda.Ai.
+% \end{lista}
+
+% \subsection*{Identificação dos Fluxos}
+% Esta seção lista e descreve todos os fluxos que compõem o caso de uso.
+% \begin{lista}
+%   \item \textbf{Listagem Mensal de Doações}: Este fluxo descreve como se dá a criação de uma listagem mensal de Doações recebidas pela Instituição;
+%   \item \textbf{Dados de uma Doação}: Este fluxo descreve como se dá a exibição de dados sobre uma Doação em Particular.
+% \end{lista}
+
+% \subsection*{Detalhamento dos Fluxos}
+% \begin{lista}
+%   \item \textbf{Listagem Mensal de Doações}: Este fluxo especifica a ação de listar as doações recebidas por uma Instituição em um determinado mês de um determinado ano. A Instituição fornece dados ao cliente o qual, junto ao sistema, cria uma lista, geralmente tabular, das doações recebidas.
+%     \begin{itemize}
+%     \item \textbf{Atores}: Instituição, Cliente;
+%     \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema;
+%     \item \textbf{Pós-Condições}: Nenhuma;
+%     \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para listagem das Doações feitas a uma Instituição.
+%     \end{itemize}
+	
+%     \textbf{Fluxo Básico}
+%     \begin{enumerate}
+%     \item A Instituição necessita de uma listagem das doações de um mês;
+%     \item A Instituição navega a uma página para listagem de doações;
+%     \item O Cliente solicita os seguintes dados: De qual Instituição deve ser a lista, Mês e Ano da listagem e um dos itens de uma lista de Estados das Doações: Todos, Pago, Pronto para Receber e Cancelado;
+%     \item A Instituição informa os dados solicitados;
+%     \item O Cliente envia os dados ao Sistema;
+%     \item O Sistema valida os dados;
+%     \item O Sistema retorna ao Cliente os dados da listagem requisitada;
+%     \item O caso de uso se encerra.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo A} \\
+%     Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
+%     \begin{enumerate}
+%     \item Uma mensagem de erro é exibida ao Usuário informando da falha.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo B} \\
+%     No Passo 6, caso exista algum erro de validação das entradas:
+%     \begin{enumerate}
+%     \item Todos os erros de validação encontrados são retornados ao Cliente;
+%     \item O fluxo retorna ao passo 2.
+%     \end{enumerate}
+  
+  
+  
+%   \item \textbf{Dados de uma Doação}: Este fluxo especifica a ação de ver dados de uma única doação específica. Após escolher qual doação será exibida, a Instituição fornece os dados necessários ao cliente o qual, junto ao sistema, pega e exibe as informações requeridas.
+%     \begin{itemize}
+%     \item \textbf{Atores}: Instituição, Cliente;
+%     \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema, Haverem Doações feitas a Instituição;
+%     \item \textbf{Pós-Condições}: Nenhuma;
+%     \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para expor dados de um pagamento.
+%     \end{itemize}
+	
+%     \textbf{Fluxo Básico}
+%     \begin{enumerate}
+%     \item A Instituição decide ver dados de uma doação;
+%     \item A Instituição seleciona qual doação será exibida;
+%     \item A Instituição navega a uma página para exibição das informações da doação;
+%     \item O Cliente requisita ao Sistema os dados da doação;
+%     \item O Sistema busca os dados da doação especificada;
+%     \item O Sistema retorna ao Cliente os dados da doação;
+%     \item O caso de uso se encerra.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo A} \\
+%     Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
+%     \begin{enumerate}
+%     \item Uma mensagem de erro é exibida ao Usuário informando da falha.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo B} \\
+%     No Passo 5, caso a doação esteja marcada como Anônima (\codigo{anonymous = true}):
+%     \begin{enumerate}
+%     \item Todas as informações de identificação do doador são retiradas do objeto (\codigo{payeeName} e \codigo{payeeEmail});
+%     \item O fluxo continua ao passo 6.
+%     \end{enumerate}
+% \end{lista}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% Anexo B - Caso de Uso 06
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section*{Especificação do Caso de Uso 06 --- Visualizar ranking} [PENDENTE]
+% --- É disponibilizado um ranking categórico aos usuários;
+% \subsection*{Objetivo}
+% Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 03 - Visualizar ranking. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
+
+% \subsection*{Identificação dos Atores}
+% Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 03 - Visualizar ranking.
+% \begin{lista}
+%   \item \textbf{Instituição}: Usuário cadastrado no sistema e que possua pelo menos 01 (uma) Instituição vinculada a ele;
+%   \item \textbf{Gateway}: \emph{Gateway} de Pagamento selecionado pela Instituição;
+%   \item \textbf{Cliente}: Interface através da qual o Usuário utiliza o Ajuda.Ai.
+% \end{lista}
+
+% \subsection*{Identificação dos Fluxos}
+% Esta seção lista e descreve todos os fluxos que compõem o caso de uso.
+% \begin{lista}
+%   \item \textbf{Listagem Mensal de Doações}: Este fluxo descreve como se dá a criação de uma listagem mensal de Doações recebidas pela Instituição;
+%   \item \textbf{Dados de uma Doação}: Este fluxo descreve como se dá a exibição de dados sobre uma Doação em Particular.
+% \end{lista}
+
+% \subsection*{Detalhamento dos Fluxos}
+% \begin{lista}
+%   \item \textbf{Listagem Mensal de Doações}: Este fluxo especifica a ação de listar as doações recebidas por uma Instituição em um determinado mês de um determinado ano. A Instituição fornece dados ao cliente o qual, junto ao sistema, cria uma lista, geralmente tabular, das doações recebidas.
+%     \begin{itemize}
+%     \item \textbf{Atores}: Instituição, Cliente;
+%     \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema;
+%     \item \textbf{Pós-Condições}: Nenhuma;
+%     \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para listagem das Doações feitas a uma Instituição.
+%     \end{itemize}
+	
+%     \textbf{Fluxo Básico}
+%     \begin{enumerate}
+%     \item A Instituição necessita de uma listagem das doações de um mês;
+%     \item A Instituição navega a uma página para listagem de doações;
+%     \item O Cliente solicita os seguintes dados: De qual Instituição deve ser a lista, Mês e Ano da listagem e um dos itens de uma lista de Estados das Doações: Todos, Pago, Pronto para Receber e Cancelado;
+%     \item A Instituição informa os dados solicitados;
+%     \item O Cliente envia os dados ao Sistema;
+%     \item O Sistema valida os dados;
+%     \item O Sistema retorna ao Cliente os dados da listagem requisitada;
+%     \item O caso de uso se encerra.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo A} \\
+%     Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
+%     \begin{enumerate}
+%     \item Uma mensagem de erro é exibida ao Usuário informando da falha.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo B} \\
+%     No Passo 6, caso exista algum erro de validação das entradas:
+%     \begin{enumerate}
+%     \item Todos os erros de validação encontrados são retornados ao Cliente;
+%     \item O fluxo retorna ao passo 2.
+%     \end{enumerate}
+  
+  
+  
+%   \item \textbf{Dados de uma Doação}: Este fluxo especifica a ação de ver dados de uma única doação específica. Após escolher qual doação será exibida, a Instituição fornece os dados necessários ao cliente o qual, junto ao sistema, pega e exibe as informações requeridas.
+%     \begin{itemize}
+%     \item \textbf{Atores}: Instituição, Cliente;
+%     \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema, Haverem Doações feitas a Instituição;
+%     \item \textbf{Pós-Condições}: Nenhuma;
+%     \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para expor dados de um pagamento.
+%     \end{itemize}
+	
+%     \textbf{Fluxo Básico}
+%     \begin{enumerate}
+%     \item A Instituição decide ver dados de uma doação;
+%     \item A Instituição seleciona qual doação será exibida;
+%     \item A Instituição navega a uma página para exibição das informações da doação;
+%     \item O Cliente requisita ao Sistema os dados da doação;
+%     \item O Sistema busca os dados da doação especificada;
+%     \item O Sistema retorna ao Cliente os dados da doação;
+%     \item O caso de uso se encerra.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo A} \\
+%     Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
+%     \begin{enumerate}
+%     \item Uma mensagem de erro é exibida ao Usuário informando da falha.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo B} \\
+%     No Passo 5, caso a doação esteja marcada como Anônima (\codigo{anonymous = true}):
+%     \begin{enumerate}
+%     \item Todas as informações de identificação do doador são retiradas do objeto (\codigo{payeeName} e \codigo{payeeEmail});
+%     \item O fluxo continua ao passo 6.
+%     \end{enumerate}
+% \end{lista}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% Anexo B - Caso de Uso 07
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section*{Especificação do Caso de Uso 07 --- Gerenciar conta} [PENDENTE]
+% --- O usuário pode alterar dados referentes a sua conta;
+% \subsection*{Objetivo}
+% Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 03 - Gerenciar conta. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
+
+% \subsection*{Identificação dos Atores}
+% Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 03 - Gerenciar conta.
+% \begin{lista}
+%   \item \textbf{Instituição}: Usuário cadastrado no sistema e que possua pelo menos 01 (uma) Instituição vinculada a ele;
+%   \item \textbf{Gateway}: \emph{Gateway} de Pagamento selecionado pela Instituição;
+%   \item \textbf{Cliente}: Interface através da qual o Usuário utiliza o Ajuda.Ai.
+% \end{lista}
+
+% \subsection*{Identificação dos Fluxos}
+% Esta seção lista e descreve todos os fluxos que compõem o caso de uso.
+% \begin{lista}
+%   \item \textbf{Listagem Mensal de Doações}: Este fluxo descreve como se dá a criação de uma listagem mensal de Doações recebidas pela Instituição;
+%   \item \textbf{Dados de uma Doação}: Este fluxo descreve como se dá a exibição de dados sobre uma Doação em Particular.
+% \end{lista}
+
+% \subsection*{Detalhamento dos Fluxos}
+% \begin{lista}
+%   \item \textbf{Listagem Mensal de Doações}: Este fluxo especifica a ação de listar as doações recebidas por uma Instituição em um determinado mês de um determinado ano. A Instituição fornece dados ao cliente o qual, junto ao sistema, cria uma lista, geralmente tabular, das doações recebidas.
+%     \begin{itemize}
+%     \item \textbf{Atores}: Instituição, Cliente;
+%     \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema;
+%     \item \textbf{Pós-Condições}: Nenhuma;
+%     \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para listagem das Doações feitas a uma Instituição.
+%     \end{itemize}
+	
+%     \textbf{Fluxo Básico}
+%     \begin{enumerate}
+%     \item A Instituição necessita de uma listagem das doações de um mês;
+%     \item A Instituição navega a uma página para listagem de doações;
+%     \item O Cliente solicita os seguintes dados: De qual Instituição deve ser a lista, Mês e Ano da listagem e um dos itens de uma lista de Estados das Doações: Todos, Pago, Pronto para Receber e Cancelado;
+%     \item A Instituição informa os dados solicitados;
+%     \item O Cliente envia os dados ao Sistema;
+%     \item O Sistema valida os dados;
+%     \item O Sistema retorna ao Cliente os dados da listagem requisitada;
+%     \item O caso de uso se encerra.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo A} \\
+%     Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
+%     \begin{enumerate}
+%     \item Uma mensagem de erro é exibida ao Usuário informando da falha.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo B} \\
+%     No Passo 6, caso exista algum erro de validação das entradas:
+%     \begin{enumerate}
+%     \item Todos os erros de validação encontrados são retornados ao Cliente;
+%     \item O fluxo retorna ao passo 2.
+%     \end{enumerate}
+  
+  
+  
+%   \item \textbf{Dados de uma Doação}: Este fluxo especifica a ação de ver dados de uma única doação específica. Após escolher qual doação será exibida, a Instituição fornece os dados necessários ao cliente o qual, junto ao sistema, pega e exibe as informações requeridas.
+%     \begin{itemize}
+%     \item \textbf{Atores}: Instituição, Cliente;
+%     \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema, Haverem Doações feitas a Instituição;
+%     \item \textbf{Pós-Condições}: Nenhuma;
+%     \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para expor dados de um pagamento.
+%     \end{itemize}
+	
+%     \textbf{Fluxo Básico}
+%     \begin{enumerate}
+%     \item A Instituição decide ver dados de uma doação;
+%     \item A Instituição seleciona qual doação será exibida;
+%     \item A Instituição navega a uma página para exibição das informações da doação;
+%     \item O Cliente requisita ao Sistema os dados da doação;
+%     \item O Sistema busca os dados da doação especificada;
+%     \item O Sistema retorna ao Cliente os dados da doação;
+%     \item O caso de uso se encerra.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo A} \\
+%     Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
+%     \begin{enumerate}
+%     \item Uma mensagem de erro é exibida ao Usuário informando da falha.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo B} \\
+%     No Passo 5, caso a doação esteja marcada como Anônima (\codigo{anonymous = true}):
+%     \begin{enumerate}
+%     \item Todas as informações de identificação do doador são retiradas do objeto (\codigo{payeeName} e \codigo{payeeEmail});
+%     \item O fluxo continua ao passo 6.
+%     \end{enumerate}
+% \end{lista}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% Anexo B - Caso de Uso 08
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section*{Especificação do Caso de Uso 08 ---  Realizar missões} [PENDENTE]
+% --- O usuário visualiza as missões diárias disponíveis a fim de ganhar recompensas;
+% \subsection*{Objetivo}
+% Este documento tem por objetivo descrever todos os fluxos envolvidos no Caso de Uso 03 -  Realizar missões. São listados e detalhados todos os atores, fluxos, requisitos funcionais e não-funcionais.
+
+% \subsection*{Identificação dos Atores}
+% Esta seção lista e descreve todos os atores envolvidos nos fluxos que compõem o Caso de Uso 03 -  Realizar missões.
+% \begin{lista}
+%   \item \textbf{Instituição}: Usuário cadastrado no sistema e que possua pelo menos 01 (uma) Instituição vinculada a ele;
+%   \item \textbf{Gateway}: \emph{Gateway} de Pagamento selecionado pela Instituição;
+%   \item \textbf{Cliente}: Interface através da qual o Usuário utiliza o Ajuda.Ai.
+% \end{lista}
+
+% \subsection*{Identificação dos Fluxos}
+% Esta seção lista e descreve todos os fluxos que compõem o caso de uso.
+% \begin{lista}
+%   \item \textbf{Listagem Mensal de Doações}: Este fluxo descreve como se dá a criação de uma listagem mensal de Doações recebidas pela Instituição;
+%   \item \textbf{Dados de uma Doação}: Este fluxo descreve como se dá a exibição de dados sobre uma Doação em Particular.
+% \end{lista}
+
+% \subsection*{Detalhamento dos Fluxos}
+% \begin{lista}
+%   \item \textbf{Listagem Mensal de Doações}: Este fluxo especifica a ação de listar as doações recebidas por uma Instituição em um determinado mês de um determinado ano. A Instituição fornece dados ao cliente o qual, junto ao sistema, cria uma lista, geralmente tabular, das doações recebidas.
+%     \begin{itemize}
+%     \item \textbf{Atores}: Instituição, Cliente;
+%     \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema;
+%     \item \textbf{Pós-Condições}: Nenhuma;
+%     \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para listagem das Doações feitas a uma Instituição.
+%     \end{itemize}
+	
+%     \textbf{Fluxo Básico}
+%     \begin{enumerate}
+%     \item A Instituição necessita de uma listagem das doações de um mês;
+%     \item A Instituição navega a uma página para listagem de doações;
+%     \item O Cliente solicita os seguintes dados: De qual Instituição deve ser a lista, Mês e Ano da listagem e um dos itens de uma lista de Estados das Doações: Todos, Pago, Pronto para Receber e Cancelado;
+%     \item A Instituição informa os dados solicitados;
+%     \item O Cliente envia os dados ao Sistema;
+%     \item O Sistema valida os dados;
+%     \item O Sistema retorna ao Cliente os dados da listagem requisitada;
+%     \item O caso de uso se encerra.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo A} \\
+%     Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
+%     \begin{enumerate}
+%     \item Uma mensagem de erro é exibida ao Usuário informando da falha.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo B} \\
+%     No Passo 6, caso exista algum erro de validação das entradas:
+%     \begin{enumerate}
+%     \item Todos os erros de validação encontrados são retornados ao Cliente;
+%     \item O fluxo retorna ao passo 2.
+%     \end{enumerate}
+  
+  
+  
+%   \item \textbf{Dados de uma Doação}: Este fluxo especifica a ação de ver dados de uma única doação específica. Após escolher qual doação será exibida, a Instituição fornece os dados necessários ao cliente o qual, junto ao sistema, pega e exibe as informações requeridas.
+%     \begin{itemize}
+%     \item \textbf{Atores}: Instituição, Cliente;
+%     \item \textbf{Pré-Condições}: Instituição cadastrada no Sistema, Instituição estar autenticada junto ao Sistema, Haverem Doações feitas a Instituição;
+%     \item \textbf{Pós-Condições}: Nenhuma;
+%     \item \textbf{Requisitos Funcionais}: O Sistema deve prover uma interface para expor dados de um pagamento.
+%     \end{itemize}
+	
+%     \textbf{Fluxo Básico}
+%     \begin{enumerate}
+%     \item A Instituição decide ver dados de uma doação;
+%     \item A Instituição seleciona qual doação será exibida;
+%     \item A Instituição navega a uma página para exibição das informações da doação;
+%     \item O Cliente requisita ao Sistema os dados da doação;
+%     \item O Sistema busca os dados da doação especificada;
+%     \item O Sistema retorna ao Cliente os dados da doação;
+%     \item O caso de uso se encerra.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo A} \\
+%     Em qualquer passo, caso exista algum erro de comunicação entre Cliente e Sistema:
+%     \begin{enumerate}
+%     \item Uma mensagem de erro é exibida ao Usuário informando da falha.
+%     \end{enumerate}
+    
+%     \textbf{Fluxo Alternativo B} \\
+%     No Passo 5, caso a doação esteja marcada como Anônima (\codigo{anonymous = true}):
+%     \begin{enumerate}
+%     \item Todas as informações de identificação do doador são retiradas do objeto (\codigo{payeeName} e \codigo{payeeEmail});
+%     \item O fluxo continua ao passo 6.
+%     \end{enumerate}
+% \end{lista}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
